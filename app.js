@@ -9,7 +9,7 @@ var cors = require('cors')
 var indexRouter = require('./routes/index');
 
 var app = express();
-app.use(cors())
+app.use(cors());
 
 mongoose
   .connect(`${process.env.DB}`, {useNewUrlParser: true})
@@ -27,5 +27,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use("/signup", require("./routes/signup"))
 
 module.exports = app;
