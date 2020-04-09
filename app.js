@@ -41,5 +41,7 @@ app.use("/signup", require("./routes/signup"))
 app.use("/login", require("./routes/login"))
 app.use("/logout", require("./routes/logout"))
 app.use("/api", require("./routes/plantAPI"))
+app.use("/userPlants", require("./routes/userPlants"))
+
 
 module.exports = app;
