@@ -7,5 +7,5 @@ const PlantSchema = new Schema({
     imgPath: String,
 });
 
-const Plant = mongoose.model("users", PlantSchema);
-module.exports = Plant;
+const UserPlant = mongoose.model("userPlants", PlantSchema);
+module.exports = UserPlant;

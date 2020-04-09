@@ -40,6 +40,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use("/signup", require("./routes/signup"))
 app.use("/login", require("./routes/login"))
 app.use("/logout", require("./routes/logout"))
-
+app.use("/api", require("./routes/plantAPI"))
 
 module.exports = app;
