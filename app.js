@@ -6,7 +6,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors')
-var indexRouter = require('./routes/index');
 
 var app = express();
 app.use(cors());
@@ -20,13 +19,27 @@ mongoose
     console.error('Error connecting to mongo', err)
   });
 
+const session    = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+
+app.use(session({
+    secret: "basic-auth-secret",
+    cookie: { maxAge: 60000 * 60 *24},
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60 * 1000
+    })
+  }));
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
 app.use("/signup", require("./routes/signup"))
+app.use("/login", require("./routes/login"))
+app.use("/logout", require("./routes/logout"))
+
 
 module.exports = app;
