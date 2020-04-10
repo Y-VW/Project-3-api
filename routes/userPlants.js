@@ -5,16 +5,18 @@ const UserPlant = require("../models/UserPlant");
 const User = require("../models/User");
 const uploadCloud = require("../config/cloudinary.js");
 const mongoose = require("mongoose")
+var ObjectId = require('mongodb').ObjectID;
 
-//To show all
-// router.get("/create", function (req, res, next) {
-//     User.findById(req.session.currentUser._id)
-//         .then(currentUser => {
-//             res.json({
-//                 currentUser: req.session.currentUser,
-//             });
-//         });
-// })
+// To show all plants of the user
+router.get("/", function (req, res, next) {
+    const userId = req.session.currentUser._id
+    UserPlant
+    .find({ creator: ObjectId(userId) })
+    .then((plants) => {
+        console.log("all plants from user:", plants)
+        res.json({userPlants: plants})
+    })
+})
 
 //to create a new one
 router.post('/create', uploadCloud.single('photo'), function (req, res, next) {
