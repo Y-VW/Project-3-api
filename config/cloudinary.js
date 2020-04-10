@@ -3,8 +3,8 @@ const cloudinaryStorage = require('multer-storage-cloudinary');
 const multer = require('multer');
 require('dotenv').config()
 
-console.log(process.env)
-console.log("this is the cloudinary name:", process.env.CLOUDINARY_NAME)
+// console.log(process.env)
+// console.log("this is the cloudinary name:", process.env.CLOUDINARY_NAME)
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_NAME,

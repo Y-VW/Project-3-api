@@ -28,6 +28,7 @@ router.post("/", (req, res, next) => {
           } 
           else {
             req.session.currentUser = user;
+            console.log(req.session.currentUser._id)
             res.json(user)
           }
         });

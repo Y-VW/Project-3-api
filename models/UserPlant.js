@@ -7,10 +7,13 @@ const PlantSchema = new Schema({
     imgName: String,
     imgPath: String,
     description: String,
-    city: String,
-    country: String,
     paymentType: String,
+    creator: 
+        {
+          type : mongoose.Schema.ObjectId,
+          ref : 'users'
+        }
 }); 
 
-const UserPlant = mongoose.model("userPlants", PlantSchema);
+const UserPlant = mongoose.model("userplants", PlantSchema);
 module.exports = UserPlant;

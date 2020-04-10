@@ -6,12 +6,8 @@ const UserSchema = new Schema({
     name: String,
     email: String,
     password: String,
-    plants: [
-        {
-          type : mongoose.Schema.ObjectId,
-          ref : 'userPlants'
-        }
-      ],
+    city: String,
+    country: String,
 });
 
 const User = mongoose.model("users", UserSchema);
