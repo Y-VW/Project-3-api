@@ -8,11 +8,12 @@ const APIURL = process.env.APIURL
 const PLANTURL = "https://trefle.io/api/plants"
 const PLANTAPIKEY = process.env.PLANTAPIKEY
 
-
-router.get('/', function (req, res, next) {
-  console.log("getting plants")
+//to search name
+router.get('/search', function (req, res, next) {
+  let q = req.query.q;
+  console.log("getting suggestions for: ", q)
   axios
-    .get(`${PLANTURL}?token=${PLANTAPIKEY}`)
+    .get(`${PLANTURL}?token=${PLANTAPIKEY}&q=${q}`)
     .then(response => {
       res.json({plants: response.data});  
     })
