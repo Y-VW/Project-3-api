@@ -53,6 +53,7 @@ app.use("/login", require("./routes/login"))
 app.use("/logout", require("./routes/logout"))
 app.use("/api", require("./routes/plantAPI"))
 app.use("/userPlants", protect, require("./routes/userPlants"))
+app.use("/marketplace", protect, require("./routes/marketplace"))
 
 
 module.exports = app;
