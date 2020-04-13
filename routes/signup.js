@@ -10,12 +10,12 @@ router.post("/", (req, res) => {
   .then(user => {
     if (user !== null) {
         res.status(500)
-        res.json({err: "The username already exists!"})
+        res.json({error: "The username already exists!"})
     } 
     else {
       if (checkPassword(password) !== true){
         //insert some errormessage here that will be shown 
-        res.err("Error")
+        res.json({error: "Password is invalid"})
       } 
       bcrypt.hash(password, 10, function(err, hash) {
         if (err) next("hashing error");
@@ -29,15 +29,17 @@ router.post("/", (req, res) => {
             .then(response => {
               res.json(response)
             })
-            .catch(err => {
-              res.json(err)
+            .catch(error => {
+              console.log(error)
+              res.json({error: "Was not able to create user"})
             });
         }
       });
     }
   })
-  .catch(err => {
-    res.send("user not created", err);
+  .catch(error => {
+    console.log(error)
+    res.json({error: "user not created"});
   });
 });
 
