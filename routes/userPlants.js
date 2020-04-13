@@ -43,5 +43,18 @@ router.post('/create', uploadCloud.single('photo'), function (req, res, next) {
 
 })
 
+//to delete
+router.delete('/:id', function (req, res, next) {
+    UserPlant
+    .findByIdAndDelete(req.params.id)
+    .then(() => {
+      res.json()
+    })
+    .catch(err => {
+      console.log("this is an error", err);
+      res.send("error", err);
+    });
+});
+
 
 module.exports = router;
