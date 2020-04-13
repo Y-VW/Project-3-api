@@ -26,6 +26,7 @@ router.post('/create', uploadCloud.single('photo'), function (req, res, next) {
         .create({
             title: req.body.title,
             name: req.body.name,
+            plantApiId: req.body.plantApiId,
             imgPath: req.file.url,
             imgName: req.file.originalname,
             description: req.body.description,
