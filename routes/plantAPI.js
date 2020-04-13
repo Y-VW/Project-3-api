@@ -15,6 +15,7 @@ router.get('/search', function (req, res, next) {
   axios
     .get(`${PLANTURL}?token=${PLANTAPIKEY}&q=${q}`)
     .then(response => {
+      console.log("API response: ", response)
       res.json({plants: response.data});  
     })
     .catch((err) => {

@@ -1,13 +1,13 @@
 require('dotenv').config();
 
-var express = require('express');
+const express = require('express');
 const mongoose = require('mongoose');
-var path = require('path');
+const path = require('path');
 // var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var cors = require('cors')
+const logger = require('morgan');
+const cors = require('cors')
 
-var app = express();
+const app = express();
 app.use(cors({
   origin: ["http://localhost:3001", "https://localhost:3001"],
   credentials: true
@@ -54,6 +54,7 @@ app.use("/logout", require("./routes/logout"))
 app.use("/api", require("./routes/plantAPI"))
 app.use("/userPlants", protect, require("./routes/userPlants"))
 app.use("/marketplace", protect, require("./routes/marketplace"))
+app.use("/plants", protect, require("./routes/plants"))
 
 
 module.exports = app;
