@@ -17,7 +17,7 @@ server.listen(3005, ()=> {
   console.log("socket io initialized on ", 3005)
 })
 const port = process.env.PORT
-const chat = require("./routes/chat"); 
+// const chat = require("./routes/chat"); 
 
 app.use(cors({
   origin: ["http://localhost:3001", "https://localhost:3001"],
@@ -68,7 +68,7 @@ app.use("/marketplace", protect, require("./routes/marketplace"))
 app.use("/plants", protect, require("./routes/plants"))
 
 //chat 
-app.use(chat);
+// app.use(chat);
 
 
 let allUsers = {}; 
