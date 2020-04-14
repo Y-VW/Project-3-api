@@ -18,6 +18,7 @@ router.get("/", function (req, res, next) {
     })
 })
 
+
 //to create a new one
 router.post('/create', uploadCloud.single('photo'), function (req, res, next) {
     console.log("session:", req.session);
