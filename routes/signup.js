@@ -24,7 +24,9 @@ router.post("/", (req, res) => {
             name: name,
             email: email,
             username: username,
-            password: hash
+            password: hash,
+            city: city,
+            country: country,
           })
             .then(response => {
               res.json(response)
