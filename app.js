@@ -9,14 +9,14 @@ const logger = require('morgan');
 const cors = require('cors')
 
 //chat
-const http = require("http");
-const server = http.createServer(app);
-var io = require('socket.io')(server);
+// const http = require("http");
+// const server = http.createServer(app);
+// var io = require('socket.io')(server);
 
-server.listen(3005, ()=> {
-  console.log("socket io initialized on ", 3005)
-})
-const port = process.env.PORT
+// server.listen(3005, ()=> {
+//   console.log("socket io initialized on ", 3005)
+// })
+// const port = process.env.PORT
 // const chat = require("./routes/chat"); 
 
 app.use(cors({
@@ -71,24 +71,24 @@ app.use("/plants", protect, require("./routes/plants"))
 // app.use(chat);
 
 
-let allUsers = {}; 
-io.origins("*:*");
+// let allUsers = {}; 
+// io.origins("*:*");
 
-io.on('connection', function(socket){
-    console.log('a user connected');
-    socket.on("user_registration", (user)=>{
-      console.log("User wants to register", user)
-      user.socketId = socket.id
-      allUsers[user.username] = user;
-      socket.user = user;
-    })
+// io.on('connection', function(socket){
+//     console.log('a user connected');
+//     socket.on("user_registration", (user)=>{
+//       console.log("User wants to register", user)
+//       user.socketId = socket.id
+//       allUsers[user.username] = user;
+//       socket.user = user;
+//     })
     
-    socket.on("message", ({recipient, sender, message})=> {
-      console.log(`Received ${message} from ${sender} to ${recipient}`)
-      let recipientSocket = allUsers[recipient].socketId;
-      socket.to(recipientSocket).emit("message", {message: message, from: sender})
-      
-    })
-});
+//     socket.on("message", ({recipient, sender, message})=> {
+//       console.log(`Received ${message} from ${sender} to ${recipient}`)
+//       let recipientSocket = allUsers[recipient].socketId;
+//       socket.to(recipientSocket).emit("message", {message: message, from: sender})
+
+//     })
+// });
 
 module.exports = app;
