@@ -4,7 +4,7 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 
 router.post("/", (req, res) => {
-  const { name, username, email, password } = req.body;
+  const { name, username, email, password, city, country } = req.body;
   User
   .findOne({ "username": username })
   .then(user => {
