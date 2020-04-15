@@ -5,8 +5,10 @@ const bcrypt = require("bcrypt");
 
 
 router.post("/", (req, res) => {
+
   console.log("The backend got this request: ", req.body)
   const { name, username, email, password, address, lat, lng } = req.body;
+
   User
   .findOne({ "username": username })
   .then(user => {
