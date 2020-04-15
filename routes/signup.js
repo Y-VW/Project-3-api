@@ -3,8 +3,10 @@ const router = express.Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 
+
 router.post("/", (req, res) => {
-  const { name, username, email, password } = req.body;
+  console.log("The backend got this request: ", req.body)
+  const { name, username, email, password, address, lat, lng } = req.body;
   User
   .findOne({ "username": username })
   .then(user => {
@@ -25,14 +27,16 @@ router.post("/", (req, res) => {
             email: email,
             username: username,
             password: hash,
-            city: city,
-            country: country,
+            address: address,
+            lat: lat,
+            lng: lng,
           })
             .then(response => {
               res.json(response)
             })
             .catch(error => {
               console.log(error)
+              res.status(500)
               res.json({error: "Was not able to create user"})
             });
         }
