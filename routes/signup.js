@@ -30,8 +30,7 @@ router.post("/", (req, res) => {
             username: username,
             password: hash,
             address: address,
-            lat: lat,
-            lng: lng,
+            coordinates: [lat, lng]
           })
             .then(response => {
               res.json(response)
