@@ -8,19 +8,10 @@ const path = require('path');
 const logger = require('morgan');
 const cors = require('cors')
 
-//chat
-// const http = require("http");
-// const server = http.createServer(app);
-// var io = require('socket.io')(server);
 
-// server.listen(3005, ()=> {
-//   console.log("socket io initialized on ", 3005)
-// })
-// const port = process.env.PORT
-// const chat = require("./routes/chat"); 
 
 app.use(cors({
-  origin: ["http://localhost:3001", "https://localhost:3001"],
+  origin: [process.env.CLIENTORIGIN1, process.env.CLIENTORIGIN2],
   credentials: true
 }
 ));
@@ -68,28 +59,6 @@ app.use("/marketplace", protect, require("./routes/marketplace"))
 app.use("/plants", protect, require("./routes/plants"))
 app.use("/email" , require("./routes/email"));
 
-//chat 
-// app.use(chat);
 
-
-// let allUsers = {}; 
-// io.origins("*:*");
-
-// io.on('connection', function(socket){
-//     console.log('a user connected');
-//     socket.on("user_registration", (user)=>{
-//       console.log("User wants to register", user)
-//       user.socketId = socket.id
-//       allUsers[user.username] = user;
-//       socket.user = user;
-//     })
-    
-//     socket.on("message", ({recipient, sender, message})=> {
-//       console.log(`Received ${message} from ${sender} to ${recipient}`)
-//       let recipientSocket = allUsers[recipient].socketId;
-//       socket.to(recipientSocket).emit("message", {message: message, from: sender})
-
-//     })
-// });
 
 module.exports = app;
