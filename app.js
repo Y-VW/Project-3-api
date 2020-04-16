@@ -57,7 +57,7 @@ app.use("/api", require("./routes/plantAPI"))
 app.use("/userPlants", protect, require("./routes/userPlants"))
 app.use("/marketplace", protect, require("./routes/marketplace"))
 app.use("/plants", protect, require("./routes/plants"))
-app.use("/email" , require("./routes/email"));
+app.use("/email" , protect, require("./routes/email"));
 
 
 
