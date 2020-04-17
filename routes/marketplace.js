@@ -61,7 +61,15 @@ router.get("/searchGeo", function (req, res) {
           distance: distances[plant.creator]
         };
       });
-      newPlants.sort((p1, p2) => p1.distance > p2.distance)
+      newPlants.sort((p1, p2) => {
+        if (p1.distance < p2.distance) {
+          return -1;
+        }
+        if (p1.distance > p2.distance) {
+          return 1;
+        }
+        return 0;
+      })
       res.json(newPlants)
     });
   });
