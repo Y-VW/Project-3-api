@@ -35,7 +35,6 @@ router.post("/", (req, res, next) => {
                 _id: user._id, 
                 coordinates: user.coordinates
               })
-            // res.json({user: user})
           }
         });
       }

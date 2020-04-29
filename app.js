@@ -58,6 +58,7 @@ app.use("/userPlants", protect, require("./routes/userPlants"))
 app.use("/marketplace", protect, require("./routes/marketplace"))
 app.use("/plants", protect, require("./routes/plants"))
 app.use("/email" , protect, require("./routes/email"));
+app.use("/messages", protect, require("./routes/messages"));
 
 
 
