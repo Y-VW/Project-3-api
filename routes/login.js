@@ -28,12 +28,14 @@ router.post("/", (req, res, next) => {
           } 
           else {
             req.session.currentUser = user;
-            const email = user.email
-            const username = user.username
-            const _id = user._id
-            const coordinates = user.coordinates
             console.log(req.session.currentUser._id)
-            res.json({user: email, username, _id, coordinates})
+            res.json({
+                email: user.email, 
+                username: user.username, 
+                _id: user._id, 
+                coordinates: user.coordinates
+              })
+            // res.json({user: user})
           }
         });
       }
