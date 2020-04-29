@@ -20,7 +20,6 @@ router.get("/:plantownerid", (req, res, next) => {
 
 //sending a message to another user
 router.post("/newmessage", (req, res, next) => {
-    console.log("body:", req.body)
     Message
         .create({
             title: req.body.title,
