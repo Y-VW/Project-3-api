@@ -5,16 +5,23 @@ const User = require("../models/User");
 
 // To show all plants of all users
 router.get("/", function (req, res, next) {
-  UserPlant.find().then((plants) => {
+  UserPlant
+  .find()
+  .populate('creator')
+  .then((plants) => {
     console.log("all plants", plants);
     res.json(plants);
   });
 });
 
+//general search
 router.get("/search", function (req, res) {
   let q = req.query.q;
   console.log("getting suggestions for: ", q);
-  UserPlant.find({ name: { $regex: `${q}.*`, $options: "-i" } }).then(
+  UserPlant
+  .find({ name: { $regex: `${q}.*`, $options: "-i" } })
+  .populate('creator')
+  .then(
     (plants) => {
       console.log("all filtered plants:", plants);
       res.json(plants);
@@ -22,6 +29,7 @@ router.get("/search", function (req, res) {
   );
 });
 
+///searchGeo
 router.get("/searchGeo", function (req, res) {
   const distance = parseInt(req.query.distance);
   const user = req.session.currentUser;
@@ -47,18 +55,20 @@ router.get("/searchGeo", function (req, res) {
     },
   ]).then((users) => {
     const userIds = users.map((user) => user._id);
-
     const distances = {};
     users.forEach((user) => (distances[user._id] = user.dist.calculated));
     console.log("distances", distances);
 
-    UserPlant.find({
-      creator: { $in: userIds },
-    }).then((plants) => {
+    UserPlant
+      .find({
+        creator: { $in: userIds },
+      })
+      .populate('creator')
+      .then((plants) => {
       const newPlants = plants.map((plant) => {
         return {
           ...plant._doc,
-          distance: distances[plant.creator]
+          distance: distances[plant.creator._id]
         };
       });
       newPlants.sort((p1, p2) => {
