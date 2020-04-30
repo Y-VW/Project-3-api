@@ -1,8 +1,6 @@
 var express = require("express");
 const router = express.Router();
 const Message = require("../models/Message");
-const User = require("../models/User");
-var ObjectId = require("mongodb").ObjectID;
 
 //messages to the user
 router.get("/:plantownerid", (req, res, next) => {
