@@ -33,8 +33,9 @@ router.post("/:id", (req, res) => {
             to: recipient.email,
             subject: "New message Stekkie",
             html: `<p>From ${data.email}</p>
-                    <p>Subject: ${data.subject}</p>
+                    <p>Subject: ${data.title}</p>
                     <p>Message: ${data.text}</p>
+                    <p>Sender: ${data.sender}
             `
         }
     

@@ -1,1 +1,0 @@
-// make route that fetches all the users from the db
